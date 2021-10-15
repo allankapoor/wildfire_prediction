@@ -43,7 +43,8 @@ Wildfires are a major natural hazard in California and the severity of wildfires
 
 <h2>Exploratory Data Analysis</h2>
 
-[EDA Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step2_ExploratoryDataAnalysis.ipynb)
+[EDA Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step2_ExploratoryDataAnalysis.ipynb)</p>
+Before attempting to train a machine learning algorithm, it was important to validate some initial claims and to explore relationships between the target and explanatory features, as well as general trends in the data.</p>
 
 _The majority of wildfires are small, but large wildfires cause most of the damage._ Out of the 83,606 wildfires recorded in California 2005-2015, 51% each burned 0.25 acres or less (about a third the size of an American football field). Only 1.2% of the wildfires burned 300 acres or more. However, that 1.2% of wildfires contributed to 96% of the total area burned.</p>
 ![Wildfire size](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireSizeBar.png)
