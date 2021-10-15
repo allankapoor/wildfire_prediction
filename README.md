@@ -1,3 +1,5 @@
+![Wildfires](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/Cover.png)
+
 # Predicting Wildfire Severity in California Leveraging Google Earth Engine and Machine Learning
 
 This project is in effort to predict wildfire severity based on the location, time of the year, and environmental features of historic wildfires leveraging machine learning algorithms. Wildfire records (location, date, and burned area) were sourced from the [United States Forest Service (USFS)](https://doi.org/10.2737/RDS-2013-0009.4). These records were enriched with additional features from several spatiotemporal datasets via Google Earth Engine and then used to train a series of machine learning algorithms to predict, if given a location and date of discovery, a wildfire will burn greater than 300 acres. 
@@ -43,6 +45,14 @@ Wildfires are a major natural hazard in California and the severity of wildfires
 
 [EDA Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step2_ExploratoryDataAnalysis.ipynb)
 
+![Wildfire size](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireSizeBar.png)
+
+![Wildfire Frequency](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireFrequency.png)
+
+![Wildfire Size Class](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireSizeClass.png)
+
+![Dew Point](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/DewPointEDA.png)
+
 <h2>Preprocessing</h2>
 
 [Preprocessing Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step3_Preprocessing.ipynb)
@@ -64,7 +74,7 @@ The performance of each model is presented in the table below. The columns to th
 | Model Performance      | f2    | recall | roc auc |
 | ---------------------- | ----- | ------ | ------- |
 | LGBM (Optuna)          | 0.296 | 0.457  | 0.688   |
-| LightGBM               | 0.280 | 0.447  | 0.68    |
+| LightGBM               | 0.280 | 0.447  | 0.680   |
 | XGBoost                | 0.260 | 0.550  | 0.699   |
 | Random Forest          | 0.255 | 0.413  | 0.661   |
 | LightGBM w/ SMOTE      | 0.248 | 0.476  | 0.674   |
@@ -73,9 +83,11 @@ The performance of each model is presented in the table below. The columns to th
 | Logistic Regression    | 0.232 | 0.748  | 0.731   |
 | Dummy Model            | 0.025 | 0.025  | 0.500   |
 
+![ROC AUC chart](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/ROC_AUC.png)
+
 <h1>Conclusions</h1>
 
-While the final model does have substantial predictive power, it could certainly be improved. Some ideas for further refinement:</p>
+Some ideas for further refinement:</p>
 
  * The timeframes for the weather features calculated from Google Earth Engine could be revisited. In particular, the timeframe for precipitation (previous year) could be shortened.
 * Additional features that address human activity/influence could be added. For example, distance from paved roads or distance from CALFIRE airports. 
@@ -83,6 +95,7 @@ The categorical vegetation type and ecoregion datasets did not end up having as 
 * The model may also be suffering from not having enough examples of the positive minority class to train on. This could be addressed by using updated data that extends to 2018 (rather than 2015). This updated dataset was unfortunately released after the feature extraction phase of this project was complete. Another possibility is to extend the start date back from 2005 to 2000, or as far as 1992.
 * The class imbalance could also be addressed by reducing the scope of the model. The model could be limited to months in summer and early fall (when large wildfires actually occur) or to wildfire prone areas, rather than the entire state. This might ensure that the training data is more directly relevant to the desired use case for the model.
 
+Using the model:</p>
 While this model was evaluated based on a hold-out test set split from a dataset of historic wildfires, the purpose of this model is to make predictions for future wildfires as they occur. The model could be put into production with a front-end interface where the user could indicate the location of a wildfire on an interactive browser-based map, enter the date, and then receive a prediction. For situations where many wildfires are occurring at once, a spatial file (shapefile, geojson, etc.) or table of wildfire locations could be uploaded in order for the model to make batch predictions.
 
 <h2>Credits</h2>
