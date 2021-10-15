@@ -94,7 +94,7 @@ The performance of each model is presented in the table below. The columns to th
 
 Some ideas for further refinement:</p>
 
- * The timeframes for the weather features calculated from Google Earth Engine could be revisited. In particular, the timeframe for precipitation (previous year) could be shortened.
+ * The timeframes for the weather features calculated from Google Earth Engine could be revisited. In particular, the timeframe for precipitation (previous year) could be shortened. The optimal timeframe for each variable could be selected by extracting a range of timeframes from Google Earth Engine and then selecting the one that has the strongest correlation with the target variable.
 * Additional features that address human activity/influence could be added. For example, distance from paved roads or distance from CALFIRE airports. 
 The categorical vegetation type and ecoregion datasets did not end up having as strong of predictive power as anticipated. These could be replaced or supplemented with more granular quantitative datasets such as Normalized Difference Vegetation Index (NDVI) (for the days preceding each wildfire), canopy density, fuel load, etc.
 * The model may also be suffering from not having enough examples of the positive minority class to train on. This could be addressed by using updated data that extends to 2018 (rather than 2015). This updated dataset was unfortunately released after the feature extraction phase of this project was complete. Another possibility is to extend the start date back from 2005 to 2000, or as far as 1992.
