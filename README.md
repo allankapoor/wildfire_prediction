@@ -45,12 +45,16 @@ Wildfires are a major natural hazard in California and the severity of wildfires
 
 [EDA Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step2_ExploratoryDataAnalysis.ipynb)
 
+_The majority of wildfires are small, but large wildfires cause most of the damage._ Out of the 83,606 wildfires recorded in California 2005-2015, 51% each burned 0.25 acres or less (about a third the size of an American football field). Only 1.2% of the wildfires burned 300 acres or more. However, that 1.2% of wildfires contributed to 96% of the total area burned.</p>
 ![Wildfire size](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireSizeBar.png)
 
+_During peak wildfire season, hundreds of wildfires can start on the same day._ The figure below displays the number of wildfires discovered in California each day from 2005 to 2015. Seasonal oscillations are apparent, with new wildfires per day peaking in the summer. There are 33 different days when 100 or more new fires were discovered in a single day.</p>
 ![Wildfire Frequency](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireFrequency.png)
 
+_There is a severe class imbalance between small and large wildfires._ While an ideal model would be able to predict the size class of a given wildfire, due to the low number of records of the larger size classes, a binary classification model will likely achieve better results and still be useful for wildfire prioritization. A wildfire that could burn more than 300 acres would definitely be of concern. </p>
 ![Wildfire Size Class](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/WildfireSizeClass.png)
 
+For all continuous variables, I did visual EDA and two-tailed t-tests vs. wildfire size. In general, the means for most of the variables have a significant difference (with low p values) between for small and large wildfires, suggesting that these variables will have predictive power during modelling. Here is one example:</p>
 ![Dew Point](https://github.com/allankapoor/wildfire_prediction/blob/master/Images/DewPointEDA.png)
 
 <h2>Preprocessing</h2>
