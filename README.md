@@ -17,10 +17,15 @@ Wildfires are a major natural hazard in California and the severity of wildfires
 3. __Imbalanced data__: large wildfires (the positive class) make up a very small portion of the dataset. I attempted to address this through class weighting and SMOTE oversampling. 
 
 <h1> Project Summary </h1>
+The following sections summarize key steps in my process. Check out the Jupyter notebooks to see hwo it was done!
 <h2>Data Wrangling + Feature Extraction</h2>
 
 [Data Wrangling + Feature Extraction Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step1_DataWrangling-FeatureGeneration.ipynb)
 
+<h3> Data Sources </h3>
+The primary data source used for this project is the official [wildfire database](https://www.fs.usda.gov/rds/archive/Catalog/RDS-2013-0009.4/) maintained by the US Forest Service. Each wildfire record includes discovery date, location (latitude and longitude), and final fire size. Filtering the wildfire dataset to California wildfires 2005-2015 returns over 80,000 events. </p>
+
+The wildfire dataset does not include explanatory features that could be used to predict wildfire behavior, so these features needed to be joined from other sources based on time and location:</p>
 
 | Variable                       | Time frame     | Description                                                                                                                                                                                                                        | Source                                                                                                                                                                                                            | Format                               |
 | ------------------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
@@ -40,6 +45,21 @@ Wildfires are a major natural hazard in California and the severity of wildfires
 | Burn probability               | n/a              | Output from the FSim probabilistic wildfire model. The burn probability dataset is the simulated mean annual burn probability.                                                                                                     | [Wildfire Hazard Potential for the United States](https://www.fs.usda.gov/rds/archive/Catalog/RDS-2015-0047-3), US Forest Service                                                                                 | 2D grid, 270 m resolution            |
 | Fire intensity level (1-6)     | n/a              | Output from the FSim probabilistic wildfire model. The fire intensity level dataset consists of six raster files, each representing the portion of all simulated fires that burned in the cell area at the specified flame length. | [Wildfire Hazard Potential for the United States](https://www.fs.usda.gov/rds/archive/Catalog/RDS-2015-0047-3), US Forest Service                                                                                 | 2D grid, 270 m resolution            |
 
+<h3>Data Cleaning</h3>
+
+Initial data cleaning steps included:
+
+* Convert Julian dates to standard data format
+* Convert data to a GeoPandas GeoDataFrame object to enable spatial processing
+* Fill missing values for the COUNTY column via a spatial join to county boundary polygons
+
+<h3>Google Earth Engine</h3>
+
+Topography variables (elevation, slope, aspect) as well as weather and environmental variables from the PRISM and GRIDMET datasets were accessed via [Google Earth Engine](https://earthengine.google.com/) (GEE). GEE is a spatial cloud computing platform that hosts a wide variety of geospatial datasets (with a focus on remote sensing/satellite imagery and weather data) and enables users to perform computationally intensive analyses on Google’s cloud. Leveraging the earthengine-api Python package, a series of custom functions were written to extract relevant data for the date and location of each wildfire. 
+
+<h3>Other Spatial Processing</h3>
+
+Additional spatial datasets such as Vegetation Type and Ecoregions were downloaded and added to the main table via spatial joins (leveraging GeoPandas for polygon vectors and Raster.io for gridded data). All necessary geographic coordinate system/projection conversions were performed before joining to ensure spatial accuracy
 
 <h2>Exploratory Data Analysis</h2>
 
