@@ -17,7 +17,7 @@ Wildfires are a major natural hazard in California and the severity of wildfires
 3. __Imbalanced data__: large wildfires (the positive class) make up a very small portion of the dataset. I attempted to address this through class weighting and SMOTE oversampling. 
 
 <h1> Project Summary </h1>
-The following sections summarize key steps in my process. Check out the Jupyter notebooks to see hwo it was done!
+The following sections summarize key steps in my process. Check out the Jupyter notebooks to see how it was done!
 <h2>Data Wrangling + Feature Extraction</h2>
 
 [Data Wrangling + Feature Extraction Notebook](https://github.com/allankapoor/wildfire_prediction/blob/master/Step1_DataWrangling-FeatureGeneration.ipynb)
@@ -55,7 +55,7 @@ Initial data cleaning steps included:
 
 <h3>Google Earth Engine</h3>
 
-Topography variables (elevation, slope, aspect) as well as weather and environmental variables from the PRISM and GRIDMET datasets were accessed via [Google Earth Engine](https://earthengine.google.com/) (GEE). GEE is a spatial cloud computing platform that hosts a wide variety of geospatial datasets (with a focus on remote sensing/satellite imagery and weather data) and enables users to perform computationally intensive analyses on Google’s cloud. Leveraging the earthengine-api Python package, a series of custom functions were written to extract relevant data for the date and location of each wildfire. 
+Topography variables (elevation, slope, aspect) as well as weather and environmental variables from the PRISM and GRIDMET datasets were accessed via [Google Earth Engine](https://earthengine.google.com/) (GEE). GEE is a spatial cloud computing platform that hosts a wide variety of geospatial datasets (with a focus on remote sensing/satellite imagery and weather data) and enables users to perform computationally intensive analyses on Google’s cloud. Leveraging the earthengine-api Python package, I wrote a series of custom functions to extract relevant data for the date and location of each wildfire. 
 
 <h3>Other Spatial Processing</h3>
 
